@@ -1,0 +1,20 @@
+.button {
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 1px solid grey;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+        opacity: 0.5;
+    }
+ 
+}
+.disabled {
+    opacity: 0.2;
+    cursor: no-drop;
+    &:hover {
+        opacity: 0.2;
+    }
+}

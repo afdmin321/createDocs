@@ -1,0 +1,30 @@
+.inputWrapper {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px 40px;
+    color: var(--secondary-color) !important;
+}
+.formCard {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 5px 25px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 20px;
+}
+.buttonWrapper {
+    display: flex;
+    gap: 10px 20px;
+    margin: 10px 0 0 auto;
+}
+.button {
+    background-color: rgb(26, 71, 26) !important;
+    color: var(--secondary-color);
+}
+.exit {
+    color: red !important;
+    font-size: 22px;
+    border: none !important;
+    margin: 0 0 0 auto;
+}

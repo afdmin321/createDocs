@@ -1,0 +1,13 @@
+@import "reset";
+@import "variables/global";
+@import "theme/theme-dark";
+@import "theme/theme-light";
+
+body {
+    height: 100vh;
+}
+.app {
+    height: 100%;
+    background: var(--primary-color);
+    color: var(--secondary-color)
+}

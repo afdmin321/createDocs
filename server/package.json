@@ -1,0 +1,44 @@
+{
+  "name": "tg_notification",
+  "version": "1.0.0",
+  "description": "telegram notification bot for amo",
+  "main": "notificator_index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "ts-node-dev --respawn index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "Alexander Ratushniak",
+  "license": "ISC",
+  "dependencies": {
+    "@types/archiver": "^6.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/html-pdf": "^3.0.3",
+    "@types/node": "^20.11.30",
+    "@types/wkhtmltopdf": "^0.3.8",
+    "archiver": "^7.0.1",
+    "axios": "^1.6.8",
+    "axios-retry": "^4.1.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.10",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "form-data": "^4.0.0",
+    "html-pdf": "^3.0.1",
+    "multer": "^1.4.5-lts.1",
+    "multiparty": "^4.2.3",
+    "pdf-master": "^1.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3",
+    "uuid": "^9.0.1",
+    "wkhtmltopdf": "^0.4.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.8",
+    "ts-node-dev": "^2.0.0"
+  }
+}
