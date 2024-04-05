@@ -2,15 +2,18 @@ import express from "express"
 import cors from "cors"
 const router = require('./routes/index')
 import config from "./config"
+import bodyParser from "body-parser"
 
 const errorHandler = require('./middleware/errorHandlingMiddleware')
 
 const app = express()
 
 app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
+app.use(bodyParser.json({limit: '150mb'}));
+app.use(bodyParser.urlencoded({     
+limit: '150mb',
+extended: true
+})); 
 app.use(router)
 
 app.use(errorHandler)

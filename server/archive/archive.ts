@@ -3,9 +3,11 @@ module.exports  = async (archive: archiver.Archiver, directory: string): Promise
     
     archive.on('warning', function (err: any) {
         if (err.code === 'ENOENT') {
+        
             // log warning
         } else {
             // throw error
+          
             throw err;
         }
     });
@@ -15,6 +17,7 @@ module.exports  = async (archive: archiver.Archiver, directory: string): Promise
     try {
         archive.directory(directory, false);
         archive.finalize()
+ 
     } catch (e) {
         throw new Error()
     }
