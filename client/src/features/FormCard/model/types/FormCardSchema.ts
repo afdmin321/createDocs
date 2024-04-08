@@ -6,7 +6,7 @@ export interface FormCardSchema {
     heigth?: number;
     filePrimary?: string | null;
     fileSecondary?: string | null; 
-    fileSpec?: string | null;
+    fileSpec?: string[] | null;
     otherFiles?: string[] | null; 
     isLoading?: boolean;
     error?: string;

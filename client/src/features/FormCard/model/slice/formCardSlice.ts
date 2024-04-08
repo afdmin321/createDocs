@@ -34,7 +34,7 @@ export const formCardSlice = createSlice({
         setFileSecondary: (state, action: PayloadAction<string | null>) => {
             state.fileSecondary = action.payload
         },
-        setFileSpec: (state, action: PayloadAction<string | null>) => {
+        setFileSpec: (state, action: PayloadAction<string[] | null>) => {
             state.fileSpec = action.payload
         },
         setOtherFiles: (state, action: PayloadAction<string[] | null>) => {

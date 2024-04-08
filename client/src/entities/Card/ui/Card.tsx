@@ -23,8 +23,8 @@ const Card: FC<CardProps> = (props) => {
                 <div>{`Высота элемента - ${heigth}`}</div>
                 {filePrimary && <div className={cls.imgWrapper}>{`Изображение основной вид -`}<img className={cls.img} src={filePrimary} /></div>}
                 {fileSecondary && <div className={cls.imgWrapper}>{`Изображение зона безопасности -`}<img className={cls.img} src={fileSecondary} /></div>}
-                {fileSpec && <div className={cls.imgWrapper}>{`Изображение спецификации -`}<img className={cls.img} src={fileSpec} /></div>}
-                {otherFiles && <div className={cls.imgWrapper}>{`Дополнительные изображения - `}{Array.from(otherFiles).map((file, index) => (<img className={cls.img} key={index} src={file} />))}</div>}
+                {fileSpec?.length && <div className={cls.imgWrapper}>{`Изображение спецификации -`}{Array.from(fileSpec).map((file, index) => (<img className={cls.img} key={index} src={file} />))}</div>}
+                {otherFiles?.length && <div className={cls.imgWrapper}>{`Дополнительные изображения - `}{Array.from(otherFiles).map((file, index) => (<img className={cls.img} key={index} src={file} />))}</div>}
             </div>
         </>
     )

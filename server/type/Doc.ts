@@ -11,7 +11,7 @@ export interface Doc {
         miniDoc: boolean
         filePrimary: string | null;
         fileSecondary: string | null; 
-        fileSpec: string | null;
+        fileSpec: string[] | null;
         otherFiles: string[] | null; 
     
 }
