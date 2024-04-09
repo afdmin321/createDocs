@@ -11,6 +11,7 @@ const zipDocs = require('../archive/archive')
 import { templateTable } from '../template/templateTable';
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
+
         const createPdf = (pdfTemlate: any, namePdf: any) => {
             return new Promise((resolve, reject) => {
                 pdf.create(pdfTemlate, {}).toFile(namePdf, (err: any, response: any) => {
@@ -21,18 +22,22 @@ class CreatedDocs {
         }
 
         const pdfDirectory = path.resolve("pdf")
-        fs.removeSync(pdfDirectory); 
+        if (pdfDirectory) {
+            fs.removeSync(pdfDirectory); 
+        }
         try {
             const dataFiles: any = req.body
             for (let i = 0; i < dataFiles.length; i++) {
                 const dataFile: any = dataFiles[i]
-                const namePdf: any = path.resolve("pdf", `${dataFile.nameFile}.pdf`)
-                const result: any = await createPdf(templateTable(req.body[i]), namePdf)
+                const namePdf: any = path.resolve("pdf", `${dataFile.nameFile.replaceAll('"' , "'")}.pdf`)
+                console.log(namePdf)
+                const result: any = await createPdf(templateTable(req.body[i]), namePdf.replaceAll())
                 console.log(result)
+                
             }
             
 
-            const archive = archiver('zip', { zlib: { level: 9 } });
+            const archive = archiver('zip', { zlib: { level: 0 } });
             await zipDocs(archive, pdfDirectory)
       
             archive.pipe(res)

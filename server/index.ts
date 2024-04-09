@@ -9,9 +9,9 @@ const errorHandler = require('./middleware/errorHandlingMiddleware')
 const app = express()
 
 app.use(cors())
-app.use(bodyParser.json({limit: '150mb'}));
+app.use(bodyParser.json({limit: '250mb'}));
 app.use(bodyParser.urlencoded({     
-limit: '150mb',
+limit: '250mb',
 extended: true
 })); 
 app.use(router)

@@ -86,7 +86,6 @@ const FormCard: FC<FormCardProps> = (props) => {
       };
       dispatch(cardsActions.addCard(data));
       dispatch(setingDocumentsActions.editNoDocument(noDocument + 1));
-      dispatch(setingDocumentsActions.editNoOrder(noOrder + 1));
       dispatch(formCardActions.reset());
       return;
     }
