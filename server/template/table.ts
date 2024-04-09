@@ -1,5 +1,5 @@
 export const table = (data: any) => {
-    const { text = "", img, date, name, noDocument } = data
+    const { text = "", img, date, name, noDocument, allPages, currentDopPages  } = data
     return `<div class="wcdiv wcpage" style="width:595.3pt; height:841.9pt;">
     <div class="wcdiv" title="андреев">
       <img class="wcimg" style="left:243.31pt; top:767.54pt; width:27pt; height:15pt;" src="data:image/png;base64,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" />
@@ -148,12 +148,12 @@ export const table = (data: any) => {
         </div>
         <div class="wcdiv" style="left:455.2pt; clip:rect(0.5pt,39pt,15.3pt,0.25pt);">
           <div class="wcdiv" style="left:5.4pt; top:0.5pt;">
-            <span class="wcspan wctext003" style="left:11.23pt; top:0.51pt; line-height:13.29pt;">6</span>
+            <span class="wcspan wctext003" style="left:11.23pt; top:0.51pt; line-height:13.29pt;">${currentDopPages}</span>
           </div>
         </div>
         <div class="wcdiv" style="left:494.45pt; clip:rect(0.5pt,50.7pt,15.3pt,0.25pt);">
           <div class="wcdiv" style="left:5.4pt; top:0.5pt;">
-            <span class="wcspan wctext003" style="left:14.08pt; top:0.51pt; line-height:13.29pt;">13</span>
+            <span class="wcspan wctext003" style="left:14.08pt; top:0.51pt; line-height:13.29pt;">${allPages}</span>
           </div>
         </div>
       </div>
@@ -189,7 +189,7 @@ export const table = (data: any) => {
         </div>
         <div class="wcdiv" style="left:293.4pt; top:-42.9pt; clip:rect(0.5pt,122.8pt,58.2pt,0.25pt);">
           <div class="wcdiv" style="left:5.4pt; top:0.5pt;">
-            <span class="wcspan wctext001" style="left:14.1pt; top:0.51pt; line-height:13.29pt;">${name}</span>
+            <span class="wcspan wctext001 nameTable" style="left:14.1pt; top:0.51pt; line-height:13.29pt;">${name}</span>
           </div>
         </div>
       </div>

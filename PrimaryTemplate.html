@@ -1,22 +1,4 @@
-import { Doc } from "../type/Doc"
-import { table } from "./table"
-import dayjs from "dayjs"
-const dateMonth = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
-export const templateTable = (data: Doc) => {
-  const { name, factoryNumber, noDocument, width, heigth, length, date, filePrimary, fileSecondary, fileSpec, otherFiles } = data
-  const monthText = dateMonth[Number(dayjs(date).format("MM"))]
-  const year = dayjs(date).format("YYYY")
-  const day = dayjs(date).format("DD")
-  const dateFormatMonthText = `«${day}» ${monthText} ${year} года`
-  const dateFrmat = dayjs(date).format("DD.MM.YY")
-
-  let allPages = 11  + (fileSecondary ? 1 : 0) + (fileSpec ? fileSpec.length : 0) + (otherFiles ? otherFiles.length : 0)
-  let currentDopPages = 5
-  const tempOthers = otherFiles ? otherFiles?.map((file) => table({ img: file, date, noDocument, name, allPages, currentDopPages: currentDopPages += 1 })).join("") : ""
-  const tempSaderty = fileSecondary ? table({ text: "Зона безопасности:", img: fileSecondary, date, noDocument, name, allPages, currentDopPages: currentDopPages += 1 }) : ""
-  const tempSpec = fileSpec ? fileSpec?.map((file) => table({ text: "Спецификации(комплектность):", img: file, date, noDocument, name, allPages, currentDopPages: currentDopPages += 1 })).join("") : ""
-
-  return `<!DOCTYPE html>
+<!DOCTYPE html>
   <html>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8398,6 +8380,4 @@ export const templateTable = (data: Doc) => {
       <div class="wcdiv wcpage" style="width:595.3pt; height:841.9pt;">
       </div>
     </body>
-  </html>`
-
-}
+  </html>
