@@ -8,7 +8,8 @@ export interface CardSchema {
     heigth: number;
     date: string;
     noDocument: number;
-    miniDoc: boolean
+    miniDoc: boolean;
+    print: boolean;
     filePrimary: string | null;
     fileSecondary: string | null; 
     fileSpec: string[] | null;

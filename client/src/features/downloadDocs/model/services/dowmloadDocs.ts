@@ -21,7 +21,6 @@ export const downloadDocs = createAsyncThunk<any, void, config>(
             if (!response) {
                 throw new Error();
             }
-            console.log(response)
             const zipBlob = await response.data;
 
             const zip = await jszip.loadAsync(zipBlob); // Manipulate the zip content if required 
@@ -35,7 +34,6 @@ export const downloadDocs = createAsyncThunk<any, void, config>(
                 });
 
         } catch (err) {
-            console.log(121212)
             return rejectWithValue("error");
         }
     }

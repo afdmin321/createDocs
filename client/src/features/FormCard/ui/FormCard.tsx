@@ -39,7 +39,7 @@ const FormCard: FC<FormCardProps> = (props) => {
     fileSpec,
     otherFiles,
   } = useSelector(getFormData);
-  const { noDocument, noOrder, date, miniDoc } = useSelector(
+  const { noDocument, noOrder, date, miniDoc, print } = useSelector(
     getSetingDocumentData
   );
   const cards = useSelector(getCards);
@@ -50,14 +50,12 @@ const FormCard: FC<FormCardProps> = (props) => {
     heigth,
     width,
     filePrimary,
-    fileSecondary,
   ]);
   const { encoding } = useBase64();
   const onCreateDocHandler = useCallback(async () => {
     if (
       factoryNumber &&
       filePrimary &&
-      fileSecondary &&
       heigth &&
       length &&
       name &&
@@ -69,6 +67,7 @@ const FormCard: FC<FormCardProps> = (props) => {
       const data: CardSchema = {
         id: nanoid(4),
         miniDoc,
+        print,
         nameFile: `${cards.length + 1}. ${String(noDocument).slice(1)} ${name}`,
         name: name,
         factoryNumber: `АН-${factoryNumber}-${dayjs(date).format(
@@ -80,7 +79,7 @@ const FormCard: FC<FormCardProps> = (props) => {
         date: date,
         noDocument: noDocument,
         filePrimary: filePrimary,
-        fileSecondary: fileSecondary,
+        fileSecondary: fileSecondary || null,
         fileSpec: fileSpec || null,
         otherFiles: otherFiles || null,
       };

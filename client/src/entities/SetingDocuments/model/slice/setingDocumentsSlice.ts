@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { SetingDocumentsSchema } from "../types/SetingDocumentsSchema";
 import useDate from "shared/lib/hooks/useDate/useDate";
 import { DATE_LS, NO_DOCUMENTA_LS, NO_ORDER_LS } from "shared/const/const";
-import { Await } from "react-router-dom";
+
 
 const { curentDate } = useDate()
 const noDocument = Number(localStorage.getItem(NO_DOCUMENTA_LS))
@@ -12,7 +12,8 @@ const initialState: SetingDocumentsSchema = {
     date,
     noDocument,
     noOrder,
-    miniDoc: false
+    miniDoc: false,
+    print: false
 }
 
 export const setingDocumentsSlice = createSlice({
@@ -33,6 +34,9 @@ export const setingDocumentsSlice = createSlice({
         },
         editMiniDoc: (state, action: PayloadAction<boolean>) => {
             state.miniDoc = action.payload
+        },
+        editPrint: (state, action: PayloadAction<boolean>) => {
+            state.print = action.payload
         },
         reset: () => {
             localStorage.removeItem(NO_ORDER_LS)

@@ -8,10 +8,11 @@ export interface Doc {
         heigth: number;
         date: string;
         noDocument: number;
-        miniDoc: boolean
+        miniDoc: boolean;
+        print: boolean;
         filePrimary: string | null;
-        fileSecondary: string | null; 
+        fileSecondary: string | null;
         fileSpec: string[] | null;
-        otherFiles: string[] | null; 
-    
+        otherFiles: string[] | null;
+
 }

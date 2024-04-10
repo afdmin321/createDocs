@@ -1,16 +1,18 @@
 import { Doc } from "../type/Doc"
 import { table } from "./table"
 import dayjs from "dayjs"
+const consts = require("../consts")
 const dateMonth = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
 export const templateTable = (data: Doc) => {
-  const { name, factoryNumber, noDocument, width, heigth, length, date, filePrimary, fileSecondary, fileSpec, otherFiles } = data
+  const { name, factoryNumber, noDocument, width, heigth, length, date, filePrimary, fileSecondary, fileSpec, otherFiles, print } = data
   const monthText = dateMonth[Number(dayjs(date).format("MM"))]
   const year = dayjs(date).format("YYYY")
   const day = dayjs(date).format("DD")
   const dateFormatMonthText = `«${day}» ${monthText} ${year} года`
   const dateFrmat = dayjs(date).format("DD.MM.YY")
-
-  let allPages = 11  + (fileSecondary ? 1 : 0) + (fileSpec ? fileSpec.length : 0) + (otherFiles ? otherFiles.length : 0)
+  const printTwo = print ? `<img src="${consts.print}" class="wcspan wctext003" style="width: 200pt; height: 150.659pt; left:120pt; top:-80pt;" alt="">` : ""
+  const printOne = print ? `<img src="${consts.print}" class="wcspan wctext003" style="width: 200pt; height: 150.659pt; left:50pt; top:-80pt;" alt="">` : ""
+  let allPages = 11 + (fileSecondary ? 1 : 0) + (fileSpec ? fileSpec.length : 0) + (otherFiles ? otherFiles.length : 0)
   let currentDopPages = 5
   const tempOthers = otherFiles ? otherFiles?.map((file) => table({ img: file, date, noDocument, name, allPages, currentDopPages: currentDopPages += 1 })).join("") : ""
   const tempSaderty = fileSecondary ? table({ text: "Зона безопасности:", img: fileSecondary, date, noDocument, name, allPages, currentDopPages: currentDopPages += 1 }) : ""
@@ -964,6 +966,7 @@ export const templateTable = (data: Doc) => {
                 <span class="wcspan wctext003" style="left:0pt; top:0.51pt; line-height:13.29pt;">            </span>
                 <span class="wcspan wctext006" style="font-size:11pt; left:36pt; top:1.24pt; line-height:12.29pt;"> </span>
                 <span class="wcspan wctext003" style="left:39.06pt; top:0.51pt; line-height:13.29pt;">___________________________              </span>
+                ${printOne}
                 <span class="wcspan wctext006" style="font-size:11pt; left:243.06pt; top:1.24pt; line-height:12.29pt;"> </span>
                 <span class="wcspan wctext003" style="font-size:11pt; left:288.11pt; top:1.4pt; line-height:12.18pt;"> </span>
                 <span class="wcspan wctext001" style="font-size:11pt; left:290.86pt; top:1.4pt; line-height:12.18pt;">Болвинов А.С.</span>
@@ -1004,6 +1007,7 @@ export const templateTable = (data: Doc) => {
               </div>
               <div class="wcdiv" style="left:5.4pt; top:345.48pt;">
                 <span class="wcspan wctext003" style="left:0pt; top:0.51pt; line-height:13.29pt;">Упаковку провел___________________________</span>
+                ${printTwo}
                 <span class="wcspan wctext001" style="font-size:11pt; left:353.04pt; top:1.4pt; line-height:12.18pt;">Болвинов А.С.</span>
                 <div class="wcdiv" style="left:330.69pt; top:12.42pt; width:115.49pt; height:0pt; border-top:solid 0.92pt #000000;">
                 </div>
@@ -4060,7 +4064,7 @@ export const templateTable = (data: Doc) => {
                 <span class="wcspan wctext002" style="left:386.35pt; top:8.56pt; line-height:13.29pt;">изменения </span>
                 <span class="wcspan wctext002" style="left:-35.4pt; top:22.36pt; line-height:13.29pt;">функциональных особенностей. </span>
               </div>
-              <span class="wcspan wctext003" style="left:5pt; top:447.02pt; "><img style="max-width: 480pt; max-height: 230pt;" src="${filePrimary}" alt="ASDF"></span>
+              <div class="wcspan wctext003" style="left:5pt; top:447.02pt; width:480pt; text-align: center;"><img style="max-width: 480pt; max-height: 230pt;" src="${filePrimary}" alt="ASDF"></div>
             </div>
           </div>
           <div class="wcdiv" style="top:708.1pt;">

@@ -4,3 +4,4 @@ export const getNoOrder = (state: StateSchema) => state.setingDocuments.noOrder
 export const getNoDocument = (state: StateSchema) => state.setingDocuments.noDocument
 export const getDate = (state: StateSchema) => state.setingDocuments.date
 export const getMiniDoc = (state: StateSchema) => state.setingDocuments.miniDoc
+export const getPrint = (state: StateSchema) => state.setingDocuments.print

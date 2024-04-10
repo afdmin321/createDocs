@@ -9,6 +9,8 @@ const fs = require('fs-extra');
 const archiver = require('archiver');
 const zipDocs = require('../archive/archive')
 import { templateTable } from '../template/templateTable';
+import { Doc } from '../type/Doc';
+import { miniDoc } from '../template/miniDoc';
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
 
@@ -26,23 +28,18 @@ class CreatedDocs {
             fs.removeSync(pdfDirectory); 
         }
         try {
-            const dataFiles: any = req.body
+            const dataFiles: Doc[] = req.body
             for (let i = 0; i < dataFiles.length; i++) {
-                const dataFile: any = dataFiles[i]
-                const namePdf: any = path.resolve("pdf", `${dataFile.nameFile.replaceAll('"' , "'")}.pdf`)
-                console.log(namePdf)
-                const result: any = await createPdf(templateTable(req.body[i]), namePdf.replaceAll())
+                const dataFile: Doc = dataFiles[i]
+                const namePdf: string = path.resolve("pdf", `${dataFile.nameFile.replaceAll('"' , "'")}.pdf`)
+                const template = dataFile.miniDoc ? miniDoc(dataFile) : templateTable(dataFile)
+                const result: unknown = await createPdf(template, namePdf)
                 console.log(result)
                 
             }
-            
-
             const archive = archiver('zip', { zlib: { level: 0 } });
             await zipDocs(archive, pdfDirectory)
-      
-            archive.pipe(res)
-          
-    
+            archive.pipe(res) 
     } catch(e: any) {
         console.log(e)
         return next(ApiError.internal(e))

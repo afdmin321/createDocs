@@ -5,7 +5,7 @@ import cls from "./SetingDocuments.module.scss"
 import DateToggle from 'features/DateToggle/DateToggle'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useSelector } from 'react-redux'
-import { getDate, getMiniDoc, getNoDocument, getNoOrder } from '../model/selectors/getSetingDocuments'
+import { getDate, getMiniDoc, getNoDocument, getNoOrder, getPrint } from '../model/selectors/getSetingDocuments'
 import { setingDocumentsActions } from '../model/slice/setingDocumentsSlice'
 import { MAX_VALUE_NUM } from 'shared/const/const'
 import useFormValid from 'shared/lib/hooks/useFormValid/useFormValid'
@@ -23,6 +23,7 @@ const SetingDocuments: FC<SetingDocumentsProps> = (props) => {
     const noDocument = useSelector(getNoDocument)
     const date = useSelector(getDate)
     const miniDoc = useSelector(getMiniDoc)
+    const print = useSelector(getPrint)
 
     const onNoOrderChange = useCallback((value: string) => {
         const valueNum = Number(value.trim())
@@ -47,12 +48,16 @@ const SetingDocuments: FC<SetingDocumentsProps> = (props) => {
         dispatch(setingDocumentsActions.editMiniDoc(checked))
     }, [dispatch, miniDoc])
 
+    const onPrintChange = useCallback((checked: boolean) => {
+        dispatch(setingDocumentsActions.editPrint(checked))
+    }, [dispatch, miniDoc])
     return (
         <header className={`${cls.setingDocuments} ${classNames}`}>
             <Input value={noOrder} autofocus onChange={onNoOrderChange} readonly={addDoc} placeholder='№ Заказа' />
             <Input value={noDocument} onChange={onNoDocumentChange} readonly={addDoc} placeholder='№ Документа' />
             <DateToggle date={date} onDateChange={onDateChange} />
             <Checkbox checked={miniDoc} onChange={onMiniDocChange} placeholder='Малый паспорт'/>
+            <Checkbox checked={print} onChange={onPrintChange} placeholder='С печатью'/>
             <Button onClick={onAddDocHandler} disabled={addDoc || !useFormValid([noOrder, noDocument, date])}>Добавить паспорт</Button>
         </header>
     )
