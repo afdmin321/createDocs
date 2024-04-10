@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "telegram notification bot for amo",
   "main": "index.ts",
-  "type": "module",
+
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "ts-node-dev --respawn index.ts",
