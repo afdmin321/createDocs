@@ -1,5 +1,5 @@
 import archiver from 'archiver';
-module.exports  = async (archive: archiver.Archiver, directory: string): Promise<archiver.Archiver> => {
+export default async (archive: archiver.Archiver, directory: string): Promise<archiver.Archiver> => {
     
     archive.on('warning', function (err: any) {
         if (err.code === 'ENOENT') {

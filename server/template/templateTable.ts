@@ -1,7 +1,7 @@
 import { Doc } from "../type/Doc"
 import { table } from "./table"
 import dayjs from "dayjs"
-const consts = require("../consts")
+import consts from "../consts"
 const dateMonth = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
 export const templateTable = (data: Doc) => {
   const { name, factoryNumber, noDocument, width, heigth, length, date, filePrimary, fileSecondary, fileSpec, otherFiles, print } = data

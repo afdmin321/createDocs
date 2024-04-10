@@ -3,6 +3,7 @@
         "outDir": "./dist",
         "sourceMap": true,
         "noImplicitAny": true,
+        "module": "ESNext",
         "target": "es5",
         "allowJs": true,
         "moduleResolution": "node",
@@ -16,8 +17,8 @@
  
     },
     "ts-node": {
-        "compilerOptions": {
-            "module": "CommonJS"
-        }
+        "esm": true,
+        "experimentalSpecifierResolution": "node",
+      
     }
 }

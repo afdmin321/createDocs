@@ -1,10 +1,10 @@
 import { Router } from 'express'
 const router = Router()
 
-const docsRouter = require('./docsRouter')
+import docsRouter from "./docsRouter"
 
 
 router.use('/', docsRouter)
 
 
-module.exports = router
+export default router

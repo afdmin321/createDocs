@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { Doc } from "../type/Doc";
-const consts = require("../consts");
+import consts from "../consts";
 
 export const miniDoc = (data: Doc) => {
     const { name, factoryNumber, noDocument, width, heigth, length, date, filePrimary, fileSecondary, fileSpec, otherFiles, print} = data

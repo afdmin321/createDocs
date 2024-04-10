@@ -2,12 +2,12 @@
 
 import { NextFunction, Request, Response } from 'express'
 import path from 'path';
-const pdf = require('html-pdf');
+import pdf from "html-pdf";
 
-const ApiError = require('../error/ApiError')
-const fs = require('fs-extra');
-const archiver = require('archiver');
-const zipDocs = require('../archive/archive')
+import ApiError from'../error/ApiError'
+import fs from "fs-extra";
+import archiver from'archiver';
+import zipDocs from'../archive/archive'
 import { templateTable } from '../template/templateTable';
 import { Doc } from '../type/Doc';
 import { miniDoc } from '../template/miniDoc';
@@ -48,4 +48,4 @@ class CreatedDocs {
 
 }
 
-module.exports = new CreatedDocs()
+export default new CreatedDocs()
