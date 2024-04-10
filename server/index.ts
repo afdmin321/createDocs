@@ -3,11 +3,14 @@ import cors from "cors"
 const router = require('./routes/index')
 import config from "./config"
 import bodyParser from "body-parser"
+import path from "path"
 
 const errorHandler = require('./middleware/errorHandlingMiddleware')
 
 const app = express()
+const dist: string = path.resolve("dist")
 
+app.use(express.static(dist));
 app.use(cors())
 app.use(bodyParser.json({limit: '250mb'}));
 app.use(bodyParser.urlencoded({     
