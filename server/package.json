@@ -32,7 +32,7 @@
     "typescript": "^5.4.3",
     "uuid": "^9.0.1",
     "zlib": "^1.0.5",
-    "phantomjs-prebuilt2": "@latest"
+    "phantomjs-prebuilt2": "^latest"
   },
   "devDependencies": {
     "@types/node": "^20.12.3",
