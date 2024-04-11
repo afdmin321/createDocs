@@ -19,7 +19,7 @@ class CreatedDocs {
         const archive = archiver('zip', { zlib: { level: 9 } });
         const createPdf = (pdfTemlate: any, namePdf: any) => {
             return new Promise((resolve, reject) => {
-                pdf.create(pdfTemlate).toBuffer((err: any, response: any) => {
+                pdf.create(pdfTemlate, option).toBuffer((err: any, response: any) => {
                     console.log(response)
                     const a = Buffer.from(response)
                     resolve(Buffer.isBuffer(a)) 
