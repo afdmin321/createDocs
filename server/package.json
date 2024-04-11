@@ -31,7 +31,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "uuid": "^9.0.1",
-    "zlib": "^1.0.5"
+    "zlib": "^1.0.5",
+    "phantomjs-prebuilt --force": "@latest"
   },
   "devDependencies": {
     "@types/node": "^20.12.3",
