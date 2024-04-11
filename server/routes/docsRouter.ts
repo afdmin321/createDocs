@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
 router.post('/created', createdDocs.created)
 
 router.get('/trotling', async (req, res) => {
-    console.log(123123)
     res.status(200).send({ point: 20000 })
 })
 
