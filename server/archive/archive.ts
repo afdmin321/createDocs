@@ -16,7 +16,6 @@ export default async (archive: archiver.Archiver, directory: any, name: string):
     });
     try {
         archive.append(directory, {name});
-        archive.finalize()
  
     } catch (e) {
         console.log(e)
