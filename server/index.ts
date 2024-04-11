@@ -6,7 +6,7 @@ import bodyParser from "body-parser"
 import path from "path"
 
 import errorHandler from './middleware/errorHandlingMiddleware'
-import { mainLogger } from "logger"
+import { mainLogger } from "./logger"
 
 const app = express()
 const dist: string = path.resolve("dist")
