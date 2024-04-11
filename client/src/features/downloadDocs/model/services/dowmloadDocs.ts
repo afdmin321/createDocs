@@ -16,7 +16,7 @@ export const downloadDocs = createAsyncThunk<any, void, config>(
         const { rejectWithValue, getState } = thunkAPi;
         const docs = getCards(getState())
         try {
-            const response = await axios.post("https://createdocs.onrender.com/created", docs, { responseType: 'blob' })
+            const response = await axios.post("http://localhost:3000/created", docs, { responseType: 'blob' })
 
             if (!response) {
                 throw new Error();

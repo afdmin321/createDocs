@@ -9,17 +9,22 @@ import zipDocs from '../archive/archive'
 import { templateTable } from '../template/templateTable';
 import { Doc } from '../type/Doc';
 import { miniDoc } from '../template/miniDoc';
+import { buffer } from 'stream/consumers';
 
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
         const option = {
             "phantomPath": "./node_modules/phantomjs-prebuilt/bin/phantomjs",
         }
+        const archive = archiver('zip', { zlib: { level: 9 } });
         const createPdf = (pdfTemlate: any, namePdf: any) => {
             return new Promise((resolve, reject) => {
-                pdf.create(pdfTemlate, option).toFile(namePdf, (err: any, response: any) => {
-                    resolve(response)
-                    reject(err)
+                pdf.create(pdfTemlate).toBuffer((err: any, response: any) => {
+                    console.log(response)
+                    const a = Buffer.from(response)
+                    resolve(Buffer.isBuffer(a)) 
+                    zipDocs(archive, a, namePdf)
+                    reject(err) 
                 });
             })
         }
@@ -38,8 +43,7 @@ class CreatedDocs {
                 console.log(result)
 
             }
-            const archive = archiver('zip', { zlib: { level: 0 } });
-            await zipDocs(archive, pdfDirectory)
+
             archive.pipe(res)
         } catch (e: any) {
             console.log(e)

@@ -1,5 +1,5 @@
 import archiver from 'archiver';
-export default async (archive: archiver.Archiver, directory: string): Promise<archiver.Archiver> => {
+export default async (archive: archiver.Archiver, directory: any, name: string): Promise<archiver.Archiver> => {
     
     archive.on('warning', function (err: any) {
         if (err.code === 'ENOENT') {
@@ -15,10 +15,11 @@ export default async (archive: archiver.Archiver, directory: string): Promise<ar
         throw err;
     });
     try {
-        archive.directory(directory, false);
+        archive.append(directory, {name});
         archive.finalize()
  
     } catch (e) {
+        console.log(e)
         throw new Error()
     }
     return archive
