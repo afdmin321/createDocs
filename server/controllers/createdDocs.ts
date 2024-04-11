@@ -1,5 +1,3 @@
-
-
 import { NextFunction, Request, Response } from 'express'
 import path from 'path';
 import pdf from "html-pdf";
@@ -14,10 +12,12 @@ import { miniDoc } from '../template/miniDoc';
 
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
-
+        const option = {
+            "phantomPath": "./node_modules/phantomjs-prebuilt/bin/phantomjs",
+        }
         const createPdf = (pdfTemlate: any, namePdf: any) => {
             return new Promise((resolve, reject) => {
-                pdf.create(pdfTemlate, {}).toFile(namePdf, (err: any, response: any) => {
+                pdf.create(pdfTemlate, option).toFile(namePdf, (err: any, response: any) => {
                     resolve(response)
                     reject(err)
                 });
