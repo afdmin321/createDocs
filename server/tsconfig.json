@@ -4,7 +4,7 @@
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "ESNext",
-        "target": "es5",
+        "target": "es6",
         "allowJs": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
@@ -13,12 +13,10 @@
         "baseUrl": ".",
         "lib": [
             "ES2021.String"
-          ]
- 
+        ]
     },
     "ts-node": {
         "esm": true,
         "experimentalSpecifierResolution": "node",
-      
     }
 }

@@ -1,4 +1,4 @@
-import express from "express"
+import express  from "express"
 import cors from "cors"
 import router from "./routes/index"
 import config from "./config"
@@ -24,7 +24,7 @@ app.use(errorHandler)
 
 // Инициализация компонент приложения
 
-app.listen(process.env.PORT || config.PORT, async () => {
-    mainLogger.debug(`Server has been started on port ${config.PORT}`)
+app.listen(config.PORT, async () => {
+    console.log(`Server has been started on port ${config.PORT}`)
 })
 
