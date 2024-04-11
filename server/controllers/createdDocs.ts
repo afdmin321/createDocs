@@ -11,7 +11,7 @@ import zipDocs from '../archive/archive'
 import { templateTable } from '../template/templateTable';
 import { Doc } from '../type/Doc';
 import { miniDoc } from '../template/miniDoc';
-import { mainLogger } from 'logger';
+import { mainLogger } from '../logger';
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
 
