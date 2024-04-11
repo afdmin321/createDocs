@@ -11,7 +11,7 @@ import zipDocs from '../archive/archive'
 import { templateTable } from '../template/templateTable';
 import { Doc } from '../type/Doc';
 import { miniDoc } from '../template/miniDoc';
-import { mainLogger } from '../logger';
+
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
 
@@ -42,7 +42,7 @@ class CreatedDocs {
             await zipDocs(archive, pdfDirectory)
             archive.pipe(res)
         } catch (e: any) {
-            mainLogger.debug(e)
+            console.log(e)
             return next(ApiError.internal(e))
         }
     }
