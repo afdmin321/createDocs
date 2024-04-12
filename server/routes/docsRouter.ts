@@ -13,7 +13,7 @@ router.post('/created', createdDocs.created)
 
 router.get('/trotling', async (req, res) => {
 
-    child_process.execSync('npm i phantomjs-prebuilt --force',{stdio:[0,1,2]});
+    child_process.execSync('npm i phantomjs-prebuilt',{stdio:[0,1,2]});
 
     res.status(200).send({ point: 20000 })
 })
