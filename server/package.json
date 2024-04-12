@@ -5,7 +5,7 @@
   "main": "index.ts",
   "type": "commonjs",
   "scripts": {
-    "start": "ts-node ./index.ts",
+    "start": "node --loader ts-node ./index.ts",
     "dev": "ts-node-dev --respawn index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
@@ -31,8 +31,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "uuid": "^9.0.1",
-    "zlib": "^1.0.5",
-    "phantomjs-prebuilt": "^2.1.16"
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/node": "^20.12.3",
