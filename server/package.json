@@ -1,7 +1,7 @@
 {
-  "name": "tg_notification",
+  "name": "create_docs",
   "version": "1.0.0",
-  "description": "telegram notification bot for amo",
+  "description": "create docs gk-sg",
   "main": "index.ts",
   "type": "commonjs",
   "scripts": {
@@ -32,7 +32,7 @@
     "typescript": "^5.4.3",
     "uuid": "^9.0.1",
     "zlib": "^1.0.5",
-    "phantomjs-prebuilt2": "^latest"
+    "phantomjs-prebuilt": "^2.1.16"
   },
   "devDependencies": {
     "@types/node": "^20.12.3",
