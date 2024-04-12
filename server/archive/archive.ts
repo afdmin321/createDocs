@@ -1,4 +1,5 @@
 import archiver from 'archiver';
+import { mainLogger } from '../logger';
 export default async (archive: archiver.Archiver, directory: any, name: string): Promise<archiver.Archiver> => {
     
     archive.on('warning', function (err: any) {
@@ -17,8 +18,8 @@ export default async (archive: archiver.Archiver, directory: any, name: string):
     try {
         archive.append(directory, {name});
  
-    } catch (e) {
-        console.log(e)
+    } catch (err) {
+        mainLogger.debug(err)
         throw new Error()
     }
     return archive

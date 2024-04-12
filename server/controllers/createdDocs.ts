@@ -9,6 +9,7 @@ import zipDocs from '../archive/archive'
 import { templateTable } from '../template/templateTable';
 import { Doc } from '../type/Doc';
 import { miniDoc } from '../template/miniDoc';
+import { mainLogger } from '../logger';
 
 
 class CreatedDocs {
@@ -41,7 +42,7 @@ class CreatedDocs {
             archive.finalize()
             archive.pipe(res)
         } catch (e: any) {
-            console.log(e)
+            mainLogger.debug(e)
             return next(ApiError.internal(e))
         }
     }

@@ -25,6 +25,6 @@ app.use(errorHandler)
 // Инициализация компонент приложения
 
 app.listen(config.PORT, async () => {
-    console.log(`Server has been started on port ${config.PORT}`)
+    mainLogger.debug(`Server has been started on port ${config.PORT}`)
 })
 
