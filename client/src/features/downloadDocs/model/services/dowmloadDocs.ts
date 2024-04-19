@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { StateSchema } from "app/providers/StoreProvider";
 import axios from "axios";
 import { getCards } from "entities/Cards/model/selectors/getCards";
+import { URL_ADDRESS } from "shared/const/const";
 // @ts-ignore
 const jszip = require('jszip')
 
@@ -16,7 +17,7 @@ export const downloadDocs = createAsyncThunk<any, void, config>(
         const { rejectWithValue, getState } = thunkAPi;
         const docs = getCards(getState())
         try {
-            const response = await axios.post("http://localhost:3000/created", docs, { responseType: 'blob' })
+            const response = await axios.post(`${URL_ADDRESS}/created`, docs, { responseType: 'blob' })
 
             if (!response) {
                 throw new Error();

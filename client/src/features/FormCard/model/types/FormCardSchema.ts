@@ -3,7 +3,7 @@ export interface FormCardSchema {
     factoryNumber?: string;
     length?: number;
     width?: number;
-    heigth?: number;
+    height?: number;
     filePrimary?: string | null;
     fileSecondary?: string | null; 
     fileSpec?: string[] | null;

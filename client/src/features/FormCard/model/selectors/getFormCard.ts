@@ -3,7 +3,7 @@ import { StateSchema } from "app/providers/StoreProvider";
 export const getFormData = (state: StateSchema) => state.formCard
 export const getFormCardName = (state: StateSchema) => state.formCard.name
 export const getFormCardFactoryNumber = (state: StateSchema) => state.formCard.factoryNumber
-export const getFormCardHeigth = (state: StateSchema) => state.formCard.heigth
+export const getFormCardHeight = (state: StateSchema) => state.formCard.height
 export const getFormCardWidth = (state: StateSchema) => state.formCard.width
 export const getFormCardLength = (state: StateSchema) => state.formCard.length
 export const getFormCardFilePrimary = (state: StateSchema) => state.formCard.filePrimary

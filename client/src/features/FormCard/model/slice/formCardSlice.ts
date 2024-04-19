@@ -24,8 +24,8 @@ export const formCardSlice = createSlice({
         setWidth: (state, action: PayloadAction<number>) => {
             state.width = action.payload
         },
-        setHeigth: (state, action: PayloadAction<number>) => {
-            state.heigth = action.payload
+        setHeight: (state, action: PayloadAction<number>) => {
+            state.height = action.payload
         },
         setFilePrimary: (state, action: PayloadAction<string | null>) => {
             console.log(action.payload)

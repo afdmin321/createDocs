@@ -5,13 +5,9 @@ import { DATE_LS, NO_DOCUMENTA_LS, NO_ORDER_LS } from "shared/const/const";
 
 
 const { curentDate } = useDate()
-const noDocument = Number(localStorage.getItem(NO_DOCUMENTA_LS))
-const noOrder = Number(localStorage.getItem(NO_ORDER_LS))
-const date = localStorage.getItem(DATE_LS) || curentDate
+
 const initialState: SetingDocumentsSchema = {
-    date,
-    noDocument,
-    noOrder,
+    date: curentDate,
     miniDoc: false,
     print: false
 }
@@ -39,9 +35,6 @@ export const setingDocumentsSlice = createSlice({
             state.print = action.payload
         },
         reset: () => {
-            localStorage.removeItem(NO_ORDER_LS)
-            localStorage.removeItem(NO_DOCUMENTA_LS)
-            localStorage.removeItem(DATE_LS)
             return initialState
         }
     }

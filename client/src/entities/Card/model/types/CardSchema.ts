@@ -5,7 +5,7 @@ export interface CardSchema {
     factoryNumber: string;
     length: number;
     width: number;
-    heigth: number;
+    height: number;
     date: string;
     noDocument: number;
     miniDoc: boolean;
