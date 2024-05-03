@@ -3,7 +3,7 @@ import { Doc } from "../type/Doc";
 import consts from "../consts";
 
 export const miniDoc = (data: Doc) => {
-    const { name, factoryNumber, noDocument, width, heigth, length, date, filePrimary, fileSecondary, fileSpec, otherFiles, print} = data
+    const { name, factoryNumber, noDocument, width, height, length, date, filePrimary, fileSecondary, fileSpec, otherFiles, print} = data
     const year = dayjs(date).format("YYYY")
     const dateFrmat = dayjs(date).format("DD.MM.YY")
     const printOne = print ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-70pt; left: 210pt;" alt="f">` : ""
@@ -232,7 +232,7 @@ export const miniDoc = (data: Doc) => {
                 style="left: 14.15pt; top: 0.51pt; line-height: 13.29pt"
               >
                 &emsp;&emsp;&emsp;Высота&thinsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                - ${heigth} мм
+                - ${height} мм
               </div>
             </div>
             <div class="wcdiv text" style="font-weight: bold; margin-top: 20pt">

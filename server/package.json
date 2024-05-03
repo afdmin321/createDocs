@@ -28,6 +28,7 @@
     "fs-extra": "^11.2.0",
     "html-pdf": "^3.0.1",
     "log4js": "^6.9.1",
+    "phantomjs-prebuilt": "^2.1.16",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "uuid": "^9.0.1",

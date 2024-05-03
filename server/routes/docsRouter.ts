@@ -2,12 +2,14 @@ import { Router } from 'express'
 import path from 'path'
 const router = Router()
 const dist = path.resolve("dist", "index.html")
-import child_process from 'child_process';
 import createdDocs from '../controllers/createdDocs'
 
 
 router.get("/", (req, res) => {
-    res.sendFile(dist)
+    res.redirect("https://xn----etbbcx3acanefm9n.xn--p1ai/")
+})
+router.get("/doc", (req, res) => {
+    res.status(200).sendFile(dist)
 })
 router.post('/created', createdDocs.created)
 

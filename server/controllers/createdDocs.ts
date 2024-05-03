@@ -6,7 +6,7 @@ import ApiError from '../error/ApiError'
 import fs from "fs-extra";
 import archiver from 'archiver';
 import zipDocs from '../archive/archive'
-import { templateTable } from '../template/templateTable';
+import { templatePassport } from '../template/templatePassport';
 import { Doc } from '../type/Doc';
 import { miniDoc } from '../template/miniDoc';
 import { mainLogger } from '../logger';
@@ -15,12 +15,15 @@ import { mainLogger } from '../logger';
 class CreatedDocs {
     async created(req: Request, res: Response, next: NextFunction) {
         const archive = archiver('zip', { zlib: { level: 9 } });
-        const createPdf = (pdfTemlate: any, namePdf: any) => {
+        const createPdf = (pdfTemlate: string) => {
             return new Promise((resolve, reject) => {
                 pdf.create(pdfTemlate).toBuffer((err: any, response: any) => {
-                    zipDocs(archive, response, namePdf)
-                    resolve(Buffer.isBuffer(response))
-                    reject(err)
+                    if (Buffer.isBuffer(response)) {
+                        resolve(response)
+                    } else {
+                        reject("no pdf in buffer")
+                    }
+
                 });
             })
         }
@@ -34,10 +37,9 @@ class CreatedDocs {
             for (let i = 0; i < dataFiles.length; i++) {
                 const dataFile: Doc = dataFiles[i]
                 const namePdf: string = `${dataFile.nameFile.replaceAll('"', "'")}.pdf`
-                const template = dataFile.miniDoc ? miniDoc(dataFile) : templateTable(dataFile)
-                const result: unknown = await createPdf(template, namePdf)
-                console.log(result)
-
+                const template = dataFile.miniDoc ? miniDoc(dataFile) : templatePassport(dataFile)
+                const result: unknown = await createPdf(template)
+                await zipDocs(archive, result, namePdf)
             }
             archive.finalize()
             archive.pipe(res)
