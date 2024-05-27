@@ -12,6 +12,7 @@ export interface DataStaticStr {
     dateFormatMonthText: string;
     printOne: string;
     printTwo: string;
+    printThree: string
     filePrimary: string | null;
     otherFiles: string[] | null;
     

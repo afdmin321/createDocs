@@ -2,7 +2,7 @@ import { DataStaticStr } from "../type/DataStaticStr";
 import { templateTable } from "./templateTable";
 
 export const staticStr = (data: DataStaticStr) => {
-  const { year, filePrimary, noDocument, name, otherFiles, currentDopPages, allPages, date, factoryNumber, dateFormatMonthText, width, height, length, printOne, printTwo } = data
+  const { year, filePrimary, noDocument, name, otherFiles, currentDopPages, allPages, date, factoryNumber, dateFormatMonthText, width, height, length, printOne, printTwo, printThree } = data
   let str = currentDopPages
   const str1 = `<div class="wcdiv wcpage" style="width:595.3pt; height:841.9pt;">
     <div class="wcdiv" style="left:85.05pt; top:14.2pt;">
@@ -320,6 +320,7 @@ export const staticStr = (data: DataStaticStr) => {
               >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
               <div class="border">Болвинов А.С</div>
             </div>
+            ${printThree}
             <div style="font-size: 10pt">
               &emsp;<span style="display: inline-block">&emsp;&emsp;</span>личная
               подпись&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
