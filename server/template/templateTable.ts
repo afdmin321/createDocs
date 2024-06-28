@@ -353,7 +353,7 @@ export const templateTable = (data: Table) => {
         </div>
         <div class="wcdiv" style="left: 293.4pt; top: -42.9pt; clip: rect(0.5pt, 122.8pt, 58.2pt, 0.25pt)">
           <div class="wcdiv" style="top: 0.5pt; padding: 0 6pt">
-            <span class="wcspan wctext001 nameTable" style="top: 0.51pt; line-height: 13.29pt"
+            <span class="wcspan wctext001 nameTable" style="top: 0.51pt; line-height: 13.29pt; overflow-wrap: break-word;"
               >${name}</span
             >
           </div>

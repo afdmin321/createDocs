@@ -20,7 +20,6 @@ export const miniDoc = (data: Doc) => {
         <title>ВНИМАНИЕ</title>
         <style type="text/css">
           html {
-            zoom: 0.75;
           }
           @font-face {
             font-family: "Times New Roman";

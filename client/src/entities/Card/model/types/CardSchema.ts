@@ -6,10 +6,8 @@ export interface CardSchema {
     length: number;
     width: number;
     height: number;
-    date: string;
     noDocument: number;
     miniDoc: boolean;
-    print: boolean;
     filePrimary: string | null;
     fileSecondary: string | null; 
     fileSpec: string[] | null;

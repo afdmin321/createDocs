@@ -24,11 +24,16 @@ class CreatedDocs {
     };
 
     try {
-      const dataFiles: Doc[] = req.body;
+      const { docs, date, print } = req.body;
+      const dataFiles: Doc[] = docs.map((doc) => {
+        return { ...doc, date, print };
+      });
       for (let i = 0; i < dataFiles.length; i++) {
         const dataFile: Doc = dataFiles[i];
         const namePdf: string = `${dataFile.nameFile.replaceAll('"', "'")}.pdf`;
-        const template = dataFile.miniDoc ? miniDoc(dataFile) : templatePassport(dataFile);
+        const template = dataFile.miniDoc
+          ? miniDoc(dataFile)
+          : templatePassport(dataFile);
         const result: Buffer = await createPdf(template);
         archive.append(result, { name: namePdf });
       }

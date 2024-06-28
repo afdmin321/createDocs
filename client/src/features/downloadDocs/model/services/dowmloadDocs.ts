@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { StateSchema } from "app/providers/StoreProvider";
 import axios from "axios";
 import { getCards } from "entities/Cards/model/selectors/getCards";
+import { getSetingDocumentData } from "entities/SetingDocuments/model/selectors/getSetingDocuments";
 import { URL_ADDRESS, localhost } from "shared/const/const";
 
 // @ts-ignore
@@ -16,8 +17,16 @@ export const downloadDocs = createAsyncThunk<any, void, config>(
   async (_, thunkAPi) => {
     const { rejectWithValue, getState } = thunkAPi;
     const docs = getCards(getState());
+    const { date, print } = getSetingDocumentData(getState());
+    const data = {
+      date,
+      print,
+      docs,
+    };
     try {
-      const response = await axios.post(`${localhost}created`, docs, { responseType: "blob" });
+      const response = await axios.post(`${localhost}created`, data, {
+        responseType: "blob",
+      });
 
       if (!response) {
         throw new Error();

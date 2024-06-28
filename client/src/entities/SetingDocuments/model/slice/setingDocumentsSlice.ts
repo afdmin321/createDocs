@@ -8,7 +8,6 @@ const { curentDate } = useDate()
 
 const initialState: SetingDocumentsSchema = {
     date: curentDate,
-    miniDoc: false,
     print: false
 }
 
@@ -27,9 +26,6 @@ export const setingDocumentsSlice = createSlice({
         editDate: (state, action: PayloadAction<string>) => {
             state.date = action.payload
             localStorage.setItem(DATE_LS, action.payload)
-        },
-        editMiniDoc: (state, action: PayloadAction<boolean>) => {
-            state.miniDoc = action.payload
         },
         editPrint: (state, action: PayloadAction<boolean>) => {
             state.print = action.payload
