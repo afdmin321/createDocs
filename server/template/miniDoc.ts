@@ -3,7 +3,6 @@ import { Doc } from "../type/Doc";
 import consts from "../consts";
 
 export const miniDoc = (data: Doc) => {
-
   const {
     name,
     factoryNumber,
@@ -351,7 +350,7 @@ export const miniDoc = (data: Doc) => {
          ${tempOthers}
         ${
           tempSaderty
-            ? '<div class="wcdiv wcpage" style="padding: 20pt;">${tempSaderty}</div>'
+            ? `<div class="wcdiv wcpage" style="padding: 20pt;">${tempSaderty}</div>`
             : ""
         }
         ${tempSpec}
