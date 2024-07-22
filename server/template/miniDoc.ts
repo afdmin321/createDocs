@@ -3,17 +3,52 @@ import { Doc } from "../type/Doc";
 import consts from "../consts";
 
 export const miniDoc = (data: Doc) => {
-    const { name, factoryNumber, noDocument, width, height, length, date, filePrimary, fileSecondary, fileSpec, otherFiles, print} = data
-    const year = dayjs(date).format("YYYY")
-    const dateFrmat = dayjs(date).format("DD.MM.YY")
-    const printOne = print ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-70pt; left: 210pt;" alt="f">` : ""
-    const printTwo = print ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-80pt; left: 220pt;" alt="f">` : ""
-    const tempOthers = otherFiles ? otherFiles?.map((file) => `<div class="imgWrapper wcpage" style="padding: 20pt;"><div><img style="max-width: 400pt; max-height: 840pt;" src="${file}" alt=""></div></div>`).join("") : ""
-    const tempSaderty = fileSecondary ? `<div class="imgWrapper"><span>Зона Безопасности: </span><div><img style="max-width: 480pt; max-height: 840pt;" src="${fileSecondary}" alt=""></div></div>` : ""
-    const tempSpec = fileSpec ? fileSpec?.map((file) => `<div class="imgWrapper wcpage"style="padding: 20pt;"><span>Спецификация: </span><div><img style="max-width: 480pt; max-height: 840pt;" src="${file}" alt=""></div>
-    </div>`).join("") : ""
 
-    return `<!DOCTYPE html>
+  const {
+    name,
+    factoryNumber,
+    noDocument,
+    width,
+    height,
+    length,
+    date,
+    filePrimary,
+    fileSecondary,
+    fileSpec,
+    otherFiles,
+    print,
+  } = data;
+  const year = dayjs(date).format("YYYY");
+  const dateFrmat = dayjs(date).format("DD.MM.YY");
+  const printOne = print
+    ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-70pt; left: 210pt;" alt="f">`
+    : "";
+  const printTwo = print
+    ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-80pt; left: 220pt;" alt="f">`
+    : "";
+  const tempOthers = otherFiles
+    ? otherFiles
+        ?.map(
+          (file) =>
+            `<div class="imgWrapper wcpage" style="padding: 20pt;"><div><img style="max-width: 400pt; max-height: 840pt;" src="${file}" alt=""></div></div>`
+        )
+        .join("")
+    : "";
+  const tempSaderty = fileSecondary
+    ? `<div class="imgWrapper"><span>Зона Безопасности: </span><div><img style="max-width: 480pt; max-height: 840pt;" src="${fileSecondary}" alt=""></div></div>`
+    : "";
+  const tempSpec = fileSpec
+    ? fileSpec
+        ?.map(
+          (
+            file
+          ) => `<div class="imgWrapper wcpage"style="padding: 20pt;"><span>Спецификация: </span><div><img style="max-width: 480pt; max-height: 840pt;" src="${file}" alt=""></div>
+    </div>`
+        )
+        .join("")
+    : "";
+
+  return `<!DOCTYPE html>
     <html>
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -314,11 +349,13 @@ export const miniDoc = (data: Doc) => {
           <div class="imgWrapper"><div><img style="max-width: 400pt; max-height: 540pt;" src="${filePrimary}" alt=""></div></div>
         </div>
          ${tempOthers}
-        <div class="wcdiv wcpage" style="padding: 20pt;">
-        ${tempSaderty}
-        </div>
+        ${
+          tempSaderty
+            ? '<div class="wcdiv wcpage" style="padding: 20pt;">${tempSaderty}</div>'
+            : ""
+        }
         ${tempSpec}
       </body>
     </html>
-    `
-}
+    `;
+};
