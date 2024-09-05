@@ -30,7 +30,9 @@ class CreatedDocs {
       });
       for (let i = 0; i < dataFiles.length; i++) {
         const dataFile: Doc = dataFiles[i];
-        const namePdf: string = `${dataFile.nameFile.replaceAll('"', "'")}.pdf`;
+        const namePdf: string = `${dataFile.nameFile
+          .trim()
+          .replaceAll('"', "'")}.pdf`;
         const template = dataFile.miniDoc
           ? miniDoc(dataFile)
           : templatePassport(dataFile);

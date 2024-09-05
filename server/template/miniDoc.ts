@@ -20,10 +20,10 @@ export const miniDoc = (data: Doc) => {
   const year = dayjs(date).format("YYYY");
   const dateFrmat = dayjs(date).format("DD.MM.YY");
   const printOne = print
-    ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-70pt; left: 210pt;" alt="f">`
+    ? `<img src="${consts.print}" style="width: 170pt; height: 135,71015pt; position: absolute; top:-70pt; left: 210pt;" alt="f">`
     : "";
   const printTwo = print
-    ? `<img src="${consts.print}" style="width: 200pt; height: 150.659pt; position: absolute; top:-80pt; left: 220pt;" alt="f">`
+    ? `<img src="${consts.print}" style="width: 170pt; height: 135,71015pt; position: absolute; top:-80pt; left: 220pt;" alt="f">`
     : "";
   const tempOthers = otherFiles
     ? otherFiles
