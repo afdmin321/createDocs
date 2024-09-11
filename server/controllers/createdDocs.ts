@@ -6,6 +6,7 @@ import { templatePassport } from "../template/templatePassport";
 import { Doc } from "../type/Doc";
 import { miniDoc } from "../template/miniDoc";
 import { mainLogger } from "../logger";
+import { factory } from "typescript";
 
 class CreatedDocs {
   async created(req: Request, res: Response, next: NextFunction) {
@@ -22,7 +23,32 @@ class CreatedDocs {
         });
       });
     };
+    const createDoc = async (doc: Doc) => {
+      let i = doc.number || 1;
 
+      if (doc.miniDoc) {
+        const name: string = `${doc.nameFile
+          .trim()
+          .replaceAll('"', "'")}${i}.pdf`;
+        const template = miniDoc(doc);
+        const result: Buffer = await createPdf(template);
+        archive.append(result, { name });
+      } else {
+        while (i) {
+          const name: string = `${doc.nameFile
+            .trim()
+            .replaceAll('"', "'")}.${i}.pdf`;
+          const template = templatePassport({
+            ...doc,
+            number: i,
+            factoryNumber: doc.factoryNumber + `.${i}`,
+          });
+          const result: Buffer = await createPdf(template);
+          archive.append(result, { name });
+          i--;
+        }
+      }
+    };
     try {
       const { docs, date, print } = req.body;
       const dataFiles: Doc[] = docs.map((doc) => {
@@ -30,14 +56,7 @@ class CreatedDocs {
       });
       for (let i = 0; i < dataFiles.length; i++) {
         const dataFile: Doc = dataFiles[i];
-        const namePdf: string = `${dataFile.nameFile
-          .trim()
-          .replaceAll('"', "'")}.pdf`;
-        const template = dataFile.miniDoc
-          ? miniDoc(dataFile)
-          : templatePassport(dataFile);
-        const result: Buffer = await createPdf(template);
-        archive.append(result, { name: namePdf });
+        await createDoc(dataFile);
       }
       archive.finalize();
       archive.pipe(res);

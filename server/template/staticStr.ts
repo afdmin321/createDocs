@@ -19,8 +19,12 @@ export const staticStr = (data: DataStaticStr) => {
     printOne,
     printTwo,
     printThree,
+    number = 1,
+    ageGroup = "от 6 до 12 лет"
   } = data;
+
   let str = currentDopPages;
+  const numberPasport = String(number).length <= 2 ? "0" + number : number;
   const str1 = `<div class="wcdiv wcpage" style="width:595.3pt; height:841.9pt;">
     <div class="wcdiv" style="left:85.05pt; top:14.2pt;">
       <div class="wcdiv" style="left:-61.55pt; top:9.2pt;">
@@ -104,7 +108,7 @@ export const staticStr = (data: DataStaticStr) => {
               <span class="wcspan wctext001" style="font-size:17pt; left:199.8pt; top:0.72pt; line-height:18.83pt;">ПАСПОРТ</span>
             </div>
             <div class="wcdiv" style="left:5.4pt; top:113.19pt;">
-              <span class="wcspan wctext005" style="font-size:17pt; left:0pt; top:0.72pt; line-height:18.83pt; text-align: center; width: 490pt;">ССД 00.01.${noDocument}.002 – ПС</span>
+              <span class="wcspan wctext005" style="font-size:17pt; left:0pt; top:0.72pt; line-height:18.83pt; text-align: center; width: 490pt;">ССД 00.01.${noDocument}.0${numberPasport} – ПС</span>
             </div>
             <div class="wcdiv" style="left:5.4pt; top:148.84pt;">
               <span class="wcspan wctext003" style="left:209.5pt; top:0.51pt; line-height:13.29pt;">Содержание:</span>
@@ -312,7 +316,7 @@ export const staticStr = (data: DataStaticStr) => {
         </div>
         <div class="content">1.3. Заводской номер&nbsp;${factoryNumber}</div>
         <div class="content">1.4. Дата выпуска ${dateFormatMonthText}</div>
-        <div class="content">1.5. Рекомендуемый возраст посетителей - от 6 до 12 лет.</div>
+        <div class="content">1.5. Рекомендуемый возраст посетителей - ${ageGroup}.</div>
         <div class="title bold content">2. Основные технические данные</div>
         <div class="contetn">
           2.1. Максимальная высота от уровня поверхности до верхней отметки ${height} мм
@@ -1967,7 +1971,7 @@ export const staticStr = (data: DataStaticStr) => {
     <div class="content">15.3. Если во время осмотра будут обнаружены какие-то неполадки, то они должны быть немедленно устранены, а если это невозможно, то оборудование должно быть закрыто для детей.</div>
     <div class="content">15.4. На поверхности игровой площадки не должно быть посторонних предметов, острых элементов, выступов и травмирующих включений</div>
     <div class="content">15.5. Материалы поверхности детской игровой площадки с низкими ударопоглощающими свойствами используют только вне области приземления</div>
-    <div class="content">15.6. Рекомендуемый возраст посетителей - от 6 до 12 лет</div>`,
+    <div class="content">15.6. Рекомендуемый возраст посетителей - ${ageGroup}</div>`,
   });
   const str7 = templateTable({
     name,

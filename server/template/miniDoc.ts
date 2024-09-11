@@ -16,6 +16,7 @@ export const miniDoc = (data: Doc) => {
     fileSpec,
     otherFiles,
     print,
+    number = 1,
   } = data;
   const year = dayjs(date).format("YYYY");
   const dateFrmat = dayjs(date).format("DD.MM.YY");
@@ -210,6 +211,12 @@ export const miniDoc = (data: Doc) => {
               style="font-size: 17pt; line-height: 18.83pt"
             >
               ССД 00.01.${noDocument}.001 – ПС
+            </div>
+             <div
+              class="wcdiv wctext003"
+              style="font-size: 17pt; line-height: 18.83pt"
+            >
+             Партия - ${number} шт.
             </div>
             <div
               class="wcdiv wctext002"
