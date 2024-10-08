@@ -1,0 +1,19 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 320px;
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--s-color);
+  border-radius: 10px;
+  padding: 40px;
+}
+.input {
+  min-height: 35px;
+  color: black !important;
+  border-bottom: 1px solid black !important;
+}
+.text {
+  min-width: 200px;
+}

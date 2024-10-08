@@ -26,8 +26,14 @@ export const formCardSlice = createSlice({
     setFactoryNumber: (state, action: PayloadAction<string>) => {
       state.factoryNumber = action.payload;
     },
+    setAgeGroup: (state, action: PayloadAction<string | undefined>) => {
+      state.ageGroup = action.payload;
+    },
     setLength: (state, action: PayloadAction<number>) => {
       state.length = action.payload;
+    },
+    setNumber: (state, action: PayloadAction<number | undefined>) => {
+      state.number = action.payload;
     },
     setWidth: (state, action: PayloadAction<number>) => {
       state.width = action.payload;

@@ -8,4 +8,4 @@ export const NO_ORDER_LS = "order"
 export const DATE_LS = "date"
 export const DOCS_LS = "docs"
 export const localhost = "http://localhost:3000/"
-export const URL_ADDRESS = "http://xn----dtbbexjokcareho.xn--p1ai/"
+export const URL_ADDRESS = localhost

@@ -1,6 +1,7 @@
 export interface FormCardSchema {
   miniDoc: boolean;
   editDoc: boolean;
+  number?: number;
   id?: string;
   name?: string;
   nameFile?: string;
@@ -12,6 +13,7 @@ export interface FormCardSchema {
   fileSecondary?: string | null;
   fileSpec?: string[] | null;
   otherFiles?: string[] | null;
+  ageGroup?: string;
   isLoading?: boolean;
   error?: string;
 }

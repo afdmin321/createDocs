@@ -7,6 +7,7 @@ export const getFormCardFactoryNumber = (state: StateSchema) => state.formCard.f
 export const getFormCardHeight = (state: StateSchema) => state.formCard.height
 export const getFormCardWidth = (state: StateSchema) => state.formCard.width
 export const getFormCardLength = (state: StateSchema) => state.formCard.length
+export const getFormCardNumber = (state: StateSchema) => state.formCard.number
 export const getFormCardFilePrimary = (state: StateSchema) => state.formCard.filePrimary
 export const getFormCardFileSecondary = (state: StateSchema) => state.formCard.fileSecondary
 export const getFormCardFileSpec = (state: StateSchema) => state.formCard.fileSpec

@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from "react";
 
 import cls from "./Card.module.scss";
 import { CardSchema } from "../model/types/CardSchema";
-import Button from "shared/ui/Button/Button";
+import {Button} from "shared/ui/Button/Button";
 import { formCardActions } from "features/FormCard";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { setingDocumentsActions } from "entities/SetingDocuments";
@@ -29,6 +29,8 @@ const Card: FC<CardProps> = (props) => {
     fileSpec,
     otherFiles,
     miniDoc,
+    number,
+    ageGroup,
   } = props.data;
   const date = dayjs(useSelector(getDate)).format("DD.MM.YYYY");
   const dispatch = useAppDispatch();
@@ -45,7 +47,9 @@ const Card: FC<CardProps> = (props) => {
     dispatch(formCardActions.setFilePrimary(filePrimary));
     dispatch(formCardActions.setFileSecondary(fileSecondary));
     dispatch(formCardActions.setEditDoc(true));
+    dispatch(formCardActions.setNumber(number));
     dispatch(setingDocumentsActions.editNoDocument(noDocument));
+    dispatch(formCardActions.setAgeGroup(ageGroup));
   }, [
     dispatch,
     name,
@@ -71,6 +75,8 @@ const Card: FC<CardProps> = (props) => {
         <div>{`Длина элемента - ${length}`}</div>
         <div>{`Ширина элемента - ${width}`}</div>
         <div>{`Высота элемента - ${height}`}</div>
+        {number && <div>Количество елементов {number}</div>}
+        {ageGroup && <div>Возростная категория: {ageGroup}</div>}
         {filePrimary && (
           <div className={cls.imgWrapper}>
             {`Изображение основной вид -`}
@@ -99,7 +105,7 @@ const Card: FC<CardProps> = (props) => {
             ))}
           </div>
         )}
-        <Button classNames={cls.buttonEdit} onClick={editCard}>
+        <Button className={cls.buttonEdit} onClick={editCard}>
           Изменить Паспорт
         </Button>
       </div>

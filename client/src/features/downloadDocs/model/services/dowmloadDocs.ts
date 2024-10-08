@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { StateSchema } from "app/providers/StoreProvider";
+import { StateSchema, ThunkConfig } from "app/providers/StoreProvider";
 import axios from "axios";
 import { getCards } from "entities/Cards/model/selectors/getCards";
 import { getSetingDocumentData } from "entities/SetingDocuments/model/selectors/getSetingDocuments";
-import { URL_ADDRESS, localhost } from "shared/const/const";
+import { getUserAuthData } from "entities/User";
 
 // @ts-ignore
 const jszip = require("jszip");
@@ -12,10 +12,10 @@ interface config {
   rejectValue: string;
   state: StateSchema;
 }
-export const downloadDocs = createAsyncThunk<any, void, config>(
+export const downloadDocs = createAsyncThunk<void, void, ThunkConfig<string>>(
   "login/loginByUsername",
-  async (_, thunkAPi) => {
-    const { rejectWithValue, getState } = thunkAPi;
+  async (_, thunkApi) => {
+    const { extra, rejectWithValue, getState } = thunkApi;
     const docs = getCards(getState());
     const { date, print } = getSetingDocumentData(getState());
     const data = {
@@ -23,9 +23,16 @@ export const downloadDocs = createAsyncThunk<any, void, config>(
       print,
       docs,
     };
+    const user = getUserAuthData(getState());
+    if (!user?.token) {
+      throw new Error("Токен устарел");
+    }
     try {
-      const response = await axios.post(`${localhost}created`, data, {
+      const response = await extra.api.post<any>(`/created`, data, {
         responseType: "blob",
+        headers: {
+          Authorization: user?.token,
+        },
       });
 
       if (!response) {

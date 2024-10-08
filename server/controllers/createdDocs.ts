@@ -6,7 +6,6 @@ import { templatePassport } from "../template/templatePassport";
 import { Doc } from "../type/Doc";
 import { miniDoc } from "../template/miniDoc";
 import { mainLogger } from "../logger";
-import { factory } from "typescript";
 
 class CreatedDocs {
   async created(req: Request, res: Response, next: NextFunction) {

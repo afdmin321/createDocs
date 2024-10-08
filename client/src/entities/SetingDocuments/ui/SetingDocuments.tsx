@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from "react";
-import Button from "shared/ui/Button/Button";
-import Input from "shared/ui/Input/Input";
+import { Button } from "shared/ui/Button/Button";
+import { Input } from "shared/ui/Input/Input";
 import cls from "./SetingDocuments.module.scss";
 import DateToggle from "features/DateToggle/DateToggle";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -56,7 +56,6 @@ const SetingDocuments: FC<SetingDocumentsProps> = (props) => {
     [dispatch, date]
   );
 
-
   const onPrintChange = useCallback(
     (checked: boolean) => {
       dispatch(setingDocumentsActions.editPrint(checked));
@@ -67,16 +66,18 @@ const SetingDocuments: FC<SetingDocumentsProps> = (props) => {
     <header className={`${cls.setingDocuments} ${classNames}`}>
       <Input
         value={noOrder}
+        className={cls.input}
         autofocus
         onChange={onNoOrderChange}
         readonly={addDoc}
-        placeholder="№ Заказа"
+        text="№ Заказа"
       />
       <Input
+        className={cls.input}
         value={noDocument}
         onChange={onNoDocumentChange}
         readonly={addDoc}
-        placeholder="№ Документа"
+        text="№ Документа"
       />
       <DateToggle date={date} onDateChange={onDateChange} />
       <Checkbox

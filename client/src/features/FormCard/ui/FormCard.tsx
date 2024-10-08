@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react";
 import { nanoid } from "nanoid";
 import cls from "./FormCard.module.scss";
-import Input from "shared/ui/Input/Input";
+import { Input } from "shared/ui/Input/Input";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { getFormData } from "../model/selectors/getFormCard";
@@ -9,7 +9,7 @@ import { formCardActions } from "../model/slice/formCardSlice";
 import { MAX_VALUE_NUM } from "shared/const/const";
 import { getSetingDocumentData } from "entities/SetingDocuments/model/selectors/getSetingDocuments";
 import InputFile from "shared/ui/file/InputFile";
-import Button from "shared/ui/Button/Button";
+import { Button } from "shared/ui/Button/Button";
 import { setingDocumentsActions } from "entities/SetingDocuments";
 import useFormValid from "shared/lib/hooks/useFormValid/useFormValid";
 
@@ -43,6 +43,8 @@ const FormCard: FC<FormCardProps> = (props) => {
     otherFiles,
     miniDoc,
     editDoc,
+    number,
+    ageGroup,
   } = useSelector(getFormData);
   const { noDocument, noOrder, date, print } = useSelector(
     getSetingDocumentData
@@ -73,7 +75,9 @@ const FormCard: FC<FormCardProps> = (props) => {
       const data: CardSchema = {
         id: id || nanoid(4),
         miniDoc,
-        nameFile: nameFile || `${cards.length + 1}. ${String(noDocument).slice(1)} ${name}`,
+        nameFile:
+          nameFile ||
+          `${cards.length + 1}. ${String(noDocument).slice(1)} ${name}`,
         name: name,
         factoryNumber: `АН-${factoryNumber}-${dayjs(date).format(
           "YYYY"
@@ -86,6 +90,8 @@ const FormCard: FC<FormCardProps> = (props) => {
         fileSecondary: fileSecondary || null,
         fileSpec: fileSpec || null,
         otherFiles: otherFiles || null,
+        number,
+        ageGroup,
       };
 
       if (editDoc) {
@@ -123,6 +129,8 @@ const FormCard: FC<FormCardProps> = (props) => {
     cards,
     miniDoc,
     id,
+    number,
+    ageGroup,
   ]);
 
   const onNameChange = useCallback(
@@ -138,7 +146,21 @@ const FormCard: FC<FormCardProps> = (props) => {
     },
     [dispatch, factoryNumber]
   );
-
+  const onAgeGroupChange = useCallback(
+    (value: string) => {
+      dispatch(formCardActions.setAgeGroup(value));
+    },
+    [dispatch, ageGroup]
+  );
+  const onNumberChange = useCallback(
+    (value: string) => {
+      const valueNum = Number(value.trim());
+      if (!isNaN(valueNum) && valueNum < MAX_VALUE_NUM) {
+        dispatch(formCardActions.setNumber(valueNum));
+      }
+    },
+    [dispatch, number]
+  );
   const onLengthChange = useCallback(
     (value: string) => {
       const valueNum = Number(value.trim());
@@ -237,7 +259,7 @@ const FormCard: FC<FormCardProps> = (props) => {
 
   return (
     <form className={`${cls.formCard} ${classNames}`}>
-      <Button classNames={cls.exit} onClick={onExitHandler}>
+      <Button className={cls.exit} onClick={onExitHandler}>
         &#10006;
       </Button>
       <div className={cls.inputWrapper}>
@@ -245,29 +267,40 @@ const FormCard: FC<FormCardProps> = (props) => {
           value={name}
           className={cls.input}
           onChange={onNameChange}
-          placeholder="Имя изделия"
+          text="Имя изделия"
         />
         <Input
           value={factoryNumber}
           onChange={onfactoryNumberChange}
-          placeholder="Аббревиатура изделия"
+          text="Аббревиатура изделия"
         />
         <Input
           value={length}
           onChange={onLengthChange}
-          placeholder="Длина изделия"
+          text="Длина изделия"
         />
         <Input
           value={width}
           onChange={onWidthChange}
-          placeholder="Ширина изделия"
+          text="Ширина изделия"
         />
         <Input
           value={height}
           onChange={onHeightChange}
-          placeholder="Высота изделия"
+          text="Высота изделия"
+        />
+        <Input
+          value={number}
+          onChange={onNumberChange}
+          text="Количество изделия"
+        />
+        <Input
+          value={ageGroup}
+          onChange={onAgeGroupChange}
+          text="Возростная категория"
         />
       </div>
+
       <div className={cls.inputWrapper}>
         <div>Добавить изабражение:</div>
         <InputFile
@@ -301,7 +334,7 @@ const FormCard: FC<FormCardProps> = (props) => {
           placeholder="Малый паспорт"
         ></Checkbox>
         <Button
-          classNames={cls.button}
+          className={cls.button}
           onClick={onCreateDocHandler}
           disabled={!valid}
         >

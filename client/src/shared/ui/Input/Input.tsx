@@ -1,29 +1,63 @@
-import { FC, InputHTMLAttributes, memo, useEffect, useRef } from "react"
-import cls from "./Input.module.scss"
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "readOnly">
-interface inputProps extends HTMLInputProps {
-    onChange: (value: string) => void;
-    value?: string | number;
-    autofocus?: boolean ;
-    readonly?: boolean;
-    className?: string;
- }
-const Input: FC<inputProps> = (props) => {
-    const {className, value, onChange, type, readonly, placeholder, autofocus, ...otherProps} = props
-    const ref = useRef<HTMLInputElement>(null)
-    useEffect(()=> {
-        if (autofocus) {
-            ref?.current?.focus()
-        }
-        
-    },[autofocus])
-    const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(evt.target.value)
-    }
-    return <div className={cls.inputWrapper}> 
-        {placeholder && <div className={cls.placeholder}>{placeholder}</div>}
-        <input className={`${cls.input} ${className}`} ref={ref} readOnly={readonly} onChange={onChangeHandler}  value={value || ""} type={type} {...otherProps}/>
-    </div>
+import { FC, InputHTMLAttributes, memo, useRef } from 'react';
+import cls from './Input.module.scss';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
+
+type HTMLInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'value' | 'onChange' | 'readOnly'
+>;
+interface Props extends HTMLInputProps {
+  className?: string;
+  classNameLabel?: string;
+  classNameText?: string;
+  value?: string | number;
+  onChange?: (value: string) => void;
+  err?: string;
+  text?: string;
+  autofocus?: boolean;
+  readonly?: boolean;
 }
 
-export default memo(Input)
+const InputComponent: FC<Props> = (props) => {
+  const {
+    className,
+    classNameLabel,
+    classNameText,
+    value,
+    onChange,
+    type = 'text',
+    readonly,
+    autofocus,
+    text,
+    err,
+    ...otherProps
+  } = props;
+
+  const ref = useRef<HTMLInputElement>(null);
+
+  const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(evt.target.value);
+  };
+
+  const mods: Mods = {
+    [cls.readonly]: readonly,
+  };
+  return (
+    <label className={classNames(cls.label, mods, [classNameLabel])}>
+      {text && (
+        <span className={classNames(cls.text, {}, [classNameText])}>{text}</span>
+      )}
+      <input
+        ref={ref}
+        readOnly={readonly}
+        type={type}
+        value={value ? value : ''}
+        onChange={onChangeHandler}
+        {...otherProps}
+        className={classNames(cls.input, mods, [className])}
+      />
+      {err && <div className={cls.error}>{err}</div>}
+    </label>
+  );
+};
+export const Input = memo(InputComponent);
