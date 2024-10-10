@@ -8,4 +8,5 @@ export const NO_ORDER_LS = "order"
 export const DATE_LS = "date"
 export const DOCS_LS = "docs"
 export const localhost = "http://localhost:3000/"
-export const URL_ADDRESS = localhost
+export const server = 'https://create-passport-sg.ru/'
+export const URL_ADDRESS = server
